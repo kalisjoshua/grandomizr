@@ -17,6 +17,15 @@
                 .join("\n"));
     }
 
+    function error (grandomizr) {
+        $("<div>")
+            .addClass("error")
+            .text("The number of groups specified will not produce groups.")
+            .appendTo(grandomizr.children().eq(1))
+            .slideUp(0)
+            .slideDown(400);
+    }
+
     function grandomize (event) {
         event.preventDefault();
 
@@ -30,6 +39,12 @@
           , size = ~~(list.length / chunks);
 
         reset(grandomizr);
+
+        if (size > 1) {
+
+        } else {
+            error(grandomizr);
+        }
     }
 
     function init (options, indx, grandomizr) {
