@@ -3,11 +3,11 @@
 (function($){
     "use strict";
 
-    function clean (source) {
-        source = $(source);
+    function clean (grandomizr) {
+        grandomizr = $(grandomizr);
 
-        return source
-            .val(source
+        return grandomizr
+            .val(grandomizr
                 .val()
                 .replace(/\n+/g, "\n")
                 .replace(/\n+$/g, "")
@@ -17,28 +17,28 @@
                 .join("\n"));
     }
 
-    function init (options, indx, self) {
-        self = $(self);
+    function init (options, indx, grandomizr) {
+        grandomizr = $(grandomizr);
 
-        self
+        grandomizr
             .data("gzr", {
-                 "count"  : self.find(options.count)
-                ,"items"  : clean(self.find(options.items))
-                ,"result" : self.find(options.result)
+                 "count"  : grandomizr.find(options.count)
+                ,"items"  : clean(grandomizr.find(options.items))
+                ,"result" : grandomizr.find(options.result)
             })
             .find(options.button)
             .on("click", function (e) {});
     }
 
-    function reset (self) {
-        self.data("gzr").result
+    function reset (grandomizr) {
+        grandomizr.data("gzr").result
             .children()
             .not(":first")
             .remove();
 
-        clean(self.data("gzr").items);
+        clean(grandomizr.data("gzr").items);
 
-        self
+        grandomizr
             .find(".error")
             .remove();
     }
