@@ -41,7 +41,15 @@
         reset(grandomizr);
 
         if (size > 1) {
+            mod = list.length % chunks;
 
+            while (list.length) {
+                data.result
+                    .append($("<h3>").text("Group " + group++));
+
+                list = list.slice(size + (mod ? 1 : 0));
+                mod && mod--;
+            }
         } else {
             error(grandomizr);
         }
@@ -52,7 +60,7 @@
 
         grandomizr
             .data("gzr", {
-                 "chunks" : grandomizr.find(options.count)
+                 "chunks" : grandomizr.find(options.chunks)
                 ,"items"  : clean(grandomizr.find(options.items))
                 ,"result" : grandomizr.find(options.result)
             })
