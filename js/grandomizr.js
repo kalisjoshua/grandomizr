@@ -17,6 +17,15 @@
                 .join("\n"));
     }
 
+    function grandomize (event) {
+        event.preventDefault();
+
+        var grandomizr = $(event.target).closest(".grandomizr")
+          , data = grandomizr.data("gzr");
+
+        reset(grandomizr);
+    }
+
     function init (options, indx, grandomizr) {
         grandomizr = $(grandomizr);
 
@@ -27,7 +36,7 @@
                 ,"result" : grandomizr.find(options.result)
             })
             .find(options.button)
-            .on("click", function (e) {});
+            .on("click", grandomize);
     }
 
     function reset (grandomizr) {
