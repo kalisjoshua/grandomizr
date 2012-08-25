@@ -23,14 +23,6 @@
 
         var plugin = this;
 
-        plugin.config = $.extend({}, options);
-
-        plugin.defaults = {
-            itemList: $('.togroup'),
-            groupsList: $('.groups'),
-            numberOfLists: $('#group_number')
-        }
-
         plugin.method = {
             grandomize: function() {
                 if (plugin.defaults.groupsList.children().length > 0) {
