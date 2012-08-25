@@ -31,7 +31,7 @@
 
     function error (grandomizr) {
         $("<div>")
-            .addClass("error")
+            .addClass("alert alert-error")
             .text("The number of groups specified will not produce groups.")
             .appendTo(grandomizr.children().eq(1))
             .slideUp(0)
@@ -46,7 +46,7 @@
 
           , chunks = ~~data.chunks.val()
           , group = 1
-          , list = mix(data.items.val().split("\n"))
+          , list = mix(clean(data.items).val().split("\n"))
           , mod
           , size = ~~(list.length / chunks);
 
@@ -104,7 +104,7 @@
         clean(grandomizr.data("gzr").items);
 
         grandomizr
-            .find(".error")
+            .find(".alert.alert-error")
             .remove();
     }
 
@@ -136,13 +136,13 @@
                 click: sorter(true, false).bind(self)
                 ,href: "#"
                 ,text: "First"
-            }))
+            }).addClass("btn btn-small btn-info"))
             .append(" ")
             .append($("<a>", {
                 click: sorter(false, false).bind(self)
                 ,href: "#"
                 ,text: "Last"
-            }));
+            }).addClass("btn btn-small btn-info"));
     }
 
     function sortSpecial (a, b) {
@@ -164,9 +164,9 @@
     };
 
     $.fn.grandomizr.defaults = {
-         button: "input[type=submit]"
+         button: "[type=submit]"
         ,chunks: "input[type=number]"
         ,items: "textarea"
-        ,result: "div:nth-child(3)"
+        ,result: ".results"
     };
 }(jQuery));

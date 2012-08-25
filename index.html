@@ -12,17 +12,19 @@
 
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
+<body class="container">
+    <div class="hero-unit">
         <h1>Grandomizr</h1>
-        <h3>A group randomizer.</h3>
-    </header>
+        <h2>A group randomizer.</h2>
+    </div>
 
-    <div role="main">
-        <p>Grandomizr is a jQuery plugin that allows you to randomly generate groups from a list of items.</p>
+    <div class="row" role="main">
+        <div class="span12">
+            <p>Grandomizr is a jQuery plugin that allows you to randomly generate groups from a list of items.</p>
+        </div>
 
-        <div class="grandomizr clearfix">
-            <div>
+        <div class="grandomizr">
+            <div class="span4">
                 <h2>Items to Group</h2>
                 <textarea class="items" rows="20">
 Brad Pitt
@@ -42,25 +44,27 @@ Christian Bale
 Milla Jovovich</textarea>
             </div>
 
-            <div>
+            <div class="span4">
                 <h2>Groupings</h2>
-                <form>
+                <form class="form-inline">
                     <label>Number of Groups:</label><br />
-                    <input name="group_number" type="number" value="5" />
-                    <input type="submit" value="Grandomize!" />
+                    <div class="input-append">
+                        <input class="span2" name="group_number" type="number" value="5" />
+                        <button class="btn btn-success" type="submit">Grandomize <i class="icon-play"></i></button>
+                    </div>
                 </form>
             </div>
 
-            <div>
+            <div class="results span4">
                 <h2>Groups</h2>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p class="floatLeft">A Bullet Time Production</p>
-        <p class="floatRight">&copy; 2012 <a href="https://github.com/jewlofthelotus">Julie Bellinson</a> | <a href="http://quickenloans.com">Quicken Loans</a></p>
-    </footer>
+    <div class="alert alert-info clearfix">
+        <p class="pull-left">A Bullet Time Production</p>
+        <p class="pull-right">&copy; 2012 <a href="https://github.com/jewlofthelotus">Julie Bellinson</a> | <a href="http://quickenloans.com">Quicken Loans</a></p>
+    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="js/grandomizr.js"></script>
