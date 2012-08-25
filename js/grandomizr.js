@@ -31,7 +31,7 @@
 
         grandomizr
             .data("gzr", {
-                 "count"  : grandomizr.find(options.count)
+                 "chunks" : grandomizr.find(options.count)
                 ,"items"  : clean(grandomizr.find(options.items))
                 ,"result" : grandomizr.find(options.result)
             })
@@ -61,7 +61,7 @@
 
     $.fn.grandomizr.defaults = {
          button: "input[type=submit]"
-        ,count: "input[type=number]"
+        ,chunks: "input[type=number]"
         ,items: "textarea"
         ,result: "div:nth-child(3)"
     };
