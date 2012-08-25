@@ -108,11 +108,59 @@
             .remove();
     }
 
+    function sorter (first, reversed) {
+
+        return function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            var source = clean(this.find(".items"))
+
+              , list = source
+                    .val()
+                    .split("\n");
+
+            list = list.sort(first === /,/.test(list[0]) ? sortSpecial : "");
+
+            source.val((sorter.reversed ? list.reverse() : list).join("\n"));
+
+            sorter.reversed = !sorter.reversed;
+        };
+    }
+
+    function sorters (self) {
+
+        return $("<p>")
+            .append("Sort names by: ")
+            .append($("<a>", {
+                click: sorter(true, false).bind(self)
+                ,href: "#"
+                ,text: "First"
+            }))
+            .append(" ")
+            .append($("<a>", {
+                click: sorter(false, false).bind(self)
+                ,href: "#"
+                ,text: "Last"
+            }));
+    }
+
+    function sortSpecial (a, b) {
+        var r = /(?:\w+$)|(?:,\s*\w+)/;
+
+        a = a.match(r)[0];
+        b = b.match(r)[0];
+
+        return a < b ? -1 : a > b ? 1 : 0;
+    }
+
     $.fn.grandomizr = function(options) {
         options = $.extend({}, $.fn.grandomizr.defaults, options);
 
         return this
-            .each(init.bind(null, options));
+            .each(init.bind(null, options))
+            .find(options.items)
+            .before(sorters(this));
     };
 
     $.fn.grandomizr.defaults = {
