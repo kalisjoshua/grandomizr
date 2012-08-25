@@ -74,27 +74,26 @@
                 list.splice(0, 1);
             }
         }
+    }
 
-        plugin.init = function() {
-            // Bind "grandomize" button
-            $element.find('input[type="submit"]').on('click', function(e) {
-                e.preventDefault();
-                plugin.method.grandomize();
-            });
-        }
+    function init (options, indx, self) {
+        self = $(self);
 
-        plugin.init();
+        self
+            .data("gzr", {
+                 "count"  : self.find(options.count)
+                ,"items"  : self.find(options.items)
+                ,"result" : self.find(options.result)
+            })
+            .find(options.button)
+            .on("click", function (e) {});
     }
 
     $.fn.grandomizr = function(options) {
         options = $.extend({}, $.fn.grandomizr.defaults, options);
-        
-        return this.each(function() {
-            if (undefined == $(this).data('grandomizr')) {
-                var plugin = new $.grandomizr(this, options);
-                $(this).data('grandomizr', plugin);
-            }
-        });
+
+        return this
+            .each(init.bind(null, options));
     };
 
     $.fn.grandomizr.defaults = {
