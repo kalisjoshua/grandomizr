@@ -17,6 +17,18 @@
                 .join("\n"));
     }
 
+    function createList (list) {
+        var parent = $("<ul>");
+
+        $.each(list, function (indx, value) {
+            $("<li>")
+                .text(value)
+                .appendTo(parent);
+        });
+
+        return parent;
+    }
+
     function error (grandomizr) {
         $("<div>")
             .addClass("error")
@@ -45,7 +57,8 @@
 
             while (list.length) {
                 data.result
-                    .append($("<h3>").text("Group " + group++));
+                    .append($("<h3>").text("Group " + group++))
+                    .append(createList(list.slice(0, size + (mod ? 1 : 0))));
 
                 list = list.slice(size + (mod ? 1 : 0));
                 mod && mod--;
