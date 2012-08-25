@@ -32,10 +32,6 @@
         }
 
         plugin.method = {
-            reset: function() {
-                plugin.defaults.groupsList.children().remove();
-            },
-
             grandomize: function() {
                 if (plugin.defaults.groupsList.children().length > 0) {
                     plugin.method.reset();
@@ -101,6 +97,19 @@
             })
             .find(options.button)
             .on("click", function (e) {});
+    }
+
+    function reset (self) {
+        self.data("gzr").result
+            .children()
+            .not(":first")
+            .remove();
+
+        clean(self.data("gzr").items);
+
+        self
+            .find(".error")
+            .remove();
     }
 
     $.fn.grandomizr = function(options) {
