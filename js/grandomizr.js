@@ -21,7 +21,13 @@
         event.preventDefault();
 
         var grandomizr = $(event.target).closest(".grandomizr")
-          , data = grandomizr.data("gzr");
+          , data = grandomizr.data("gzr")
+
+          , chunks = ~~data.chunks.val()
+          , group = 1
+          , list = mix(data.items.val().split("\n"))
+          , mod
+          , size = ~~(list.length / chunks);
 
         reset(grandomizr);
     }
@@ -37,6 +43,20 @@
             })
             .find(options.button)
             .on("click", grandomize);
+    }
+
+    function mix (arr) {
+        var len = arr.length
+            ,indx
+            ,result = [];
+
+        while (len > result.length) {
+            indx = ~~(Math.random() * arr.length);
+            result.push(arr[indx]);
+            arr = arr.slice(0, indx).concat(arr.slice(indx + 1));
+        }
+
+        return result;
     }
 
     function reset (grandomizr) {
