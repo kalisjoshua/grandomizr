@@ -84,41 +84,16 @@ header {
     border-bottom: 1px solid #eee;
 }
 
-header h1 {
-  margin-bottom: 0;
+.error {
+  background: pink;
+  border: 1px solid red;
+  padding: 1em;
 }
 
-header h3 {
-  margin-top: 0;
-  font-style: italic;
-  font-weight: normal;
-  padding-left: 20px;
+.grandomizr > div {
+  float: left;
+  width: 33%;
 }
-
-div[role="main"] {
-  padding: 20px;
-}
-
-.grandomizr {}
-.grandomizr .items {
-  list-style-type: none;
-  line-height: 1.8em;
-  padding-left: 20px;
-}
-
-footer {
-  border-top: 1px solid #eee;
-  padding: 0 10px;
-  font-size: 12px;
-  font-style: italic;
-  color: #777;
-}
-
-
-/* Columns */
-.col { float: left; border-right: 1px solid #ccc; min-height: 620px; }
-.double { width: 46.5%; padding-left: 3%; }
-.last { border-right: none; }
 
 
 
