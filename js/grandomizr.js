@@ -87,11 +87,20 @@
     }
 
     $.fn.grandomizr = function(options) {
+        options = $.extend({}, $.fn.grandomizr.defaults, options);
+        
         return this.each(function() {
             if (undefined == $(this).data('grandomizr')) {
                 var plugin = new $.grandomizr(this, options);
                 $(this).data('grandomizr', plugin);
             }
         });
-    }
+    };
+
+    $.fn.grandomizr.defaults = {
+         button: "input[type=submit]"
+        ,count: "input[type=number]"
+        ,items: "textarea"
+        ,result: "div:nth-child(3)"
+    };
 }(jQuery));
