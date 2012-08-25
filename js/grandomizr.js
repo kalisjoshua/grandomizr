@@ -1,4 +1,8 @@
+/*jshint*/
+/*globals jQuery*/
 (function($){
+    "use strict";
+
     $.grandomizr = function(element, options) {
         var $element = $(element),
              element = element;
@@ -90,4 +94,4 @@
             }
         });
     }
-})(jQuery);
+}(jQuery));
