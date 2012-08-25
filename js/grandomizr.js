@@ -3,6 +3,20 @@
 (function($){
     "use strict";
 
+    function clean (source) {
+        source = $(source);
+
+        return source
+            .val(source
+                .val()
+                .replace(/\n+/g, "\n")
+                .replace(/\n+$/g, "")
+                .split("\n")
+                .map(function (str) {return str.replace(/^\s+|\s+$/g, "");})
+                .filter(function (value) {return !(/^$/).test(value);})
+                .join("\n"));
+    }
+
     $.grandomizr = function(element, options) {
         var $element = $(element),
              element = element;
@@ -82,7 +96,7 @@
         self
             .data("gzr", {
                  "count"  : self.find(options.count)
-                ,"items"  : self.find(options.items)
+                ,"items"  : clean(self.find(options.items))
                 ,"result" : self.find(options.result)
             })
             .find(options.button)
