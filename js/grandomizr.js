@@ -81,15 +81,15 @@
             .on("click", grandomize);
     }
 
-    function mix (arr) {
-        var len = arr.length
+    function mix (list) {
+        var len = list.length
             ,indx
             ,result = [];
 
         while (len > result.length) {
-            indx = ~~(Math.random() * arr.length);
-            result.push(arr[indx]);
-            arr = arr.slice(0, indx).concat(arr.slice(indx + 1));
+            indx = ~~(Math.random() * list.length);
+            result.push(list[indx]);
+            list = list.slice(0, indx).concat(list.slice(indx + 1));
         }
 
         return result;
@@ -128,18 +128,18 @@
         };
     }
 
-    function sorters (self) {
+    function sorters (grandomizr) {
 
         return $("<p>")
             .append("Sort names by: ")
             .append($("<a>", {
-                click: sorter(true, false).bind(self)
+                click: sorter(true, false).bind(grandomizr)
                 ,href: "#"
                 ,text: "First"
             }).addClass("btn btn-small btn-info"))
             .append(" ")
             .append($("<a>", {
-                click: sorter(false, false).bind(self)
+                click: sorter(false, false).bind(grandomizr)
                 ,href: "#"
                 ,text: "Last"
             }).addClass("btn btn-small btn-info"));
