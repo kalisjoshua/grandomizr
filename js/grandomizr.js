@@ -129,20 +129,33 @@
     }
 
     function sorters (grandomizr) {
+        var links = [$("<a>", {
+                    click: sorter(true, false).bind(grandomizr)
+                    ,href: "#"
+                    ,text: "First"
+                }).addClass("btn btn-small btn-info")
+                , $("<a>", {
+                    click: sorter(false, false).bind(grandomizr)
+                    ,href: "#"
+                    ,text: "Last"
+                }).addClass("btn btn-small btn-info")]
+            
+          , commas = grandomizr
+                .find(".items")
+                .val()
+                .split("\n")[0]
+                .split(",")
+                .length > 1;
+
+        if (commas) {
+            links = links.reverse();
+        }
 
         return $("<p>")
             .append("Sort names by: ")
-            .append($("<a>", {
-                click: sorter(true, false).bind(grandomizr)
-                ,href: "#"
-                ,text: "First"
-            }).addClass("btn btn-small btn-info"))
-            .append(" ")
-            .append($("<a>", {
-                click: sorter(false, false).bind(grandomizr)
-                ,href: "#"
-                ,text: "Last"
-            }).addClass("btn btn-small btn-info"));
+            .append(links[0])
+            .append(commas ? ", " : " ")
+            .append(links[1]);
     }
 
     function sortSpecial (a, b) {
@@ -160,7 +173,12 @@
         return this
             .each(init.bind(null, options))
             .find(options.items)
-            .before(sorters(this));
+            .before(sorters(this))
+            .end()
+            .fadeOut(0)
+            .removeClass("invisible")
+            .delay(600)
+            .fadeIn(600);
     };
 
     $.fn.grandomizr.defaults = {
