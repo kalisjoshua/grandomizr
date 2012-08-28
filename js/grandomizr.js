@@ -68,6 +68,40 @@
 
                 // remove it from the list
                 list.splice(0, 1);
+            },
+
+            // sort the names in the list
+            alphabetize: function (sort_on_first, event) {
+                event.preventDefault();
+                event.stopPropagation();
+                var names = plugin.defaults.itemList
+                    .children()
+                    .sort(function (a, b) {
+                        var aComma = a.innerHTML.indexOf(",") > 0
+                          , bComma = b.innerHTML.indexOf(",") > 0;
+
+                        // split the names
+                        a = a.innerHTML.match(/([\-\w]+)/g);
+                        b = b.innerHTML.match(/([\-\w]+)/g);
+
+                        // normalize the position of First and Last
+                        !aComma && a.push(a.shift());
+                        !bComma && b.push(b.shift());
+
+                        // get rid of the middle initial if it is present
+                        a.length > 2 && (aComma ? a.pop() : a.shift());
+                        b.length > 2 && (bComma ? b.pop() : b.shift());
+
+                        // assign which to sort with
+                        a = a[+sort_on_first];
+                        b = b[+sort_on_first];
+
+                        return a < b ? -1 : a > b ? 1 : 0;
+                    });
+
+                plugin.defaults.itemList
+                    .empty()
+                    .html(names);
             }
         }
 
@@ -77,6 +111,12 @@
                 e.preventDefault();
                 plugin.method.grandomize();
             });
+
+            // add the links for the user to click for sort
+            plugin.defaults.itemList.before($("<p>").text("Sort by: ")
+                .append($("<a>", {href: "#", text: "First", click: plugin.method.alphabetize.bind(null, true)}))
+                .append(" ")
+                .append($("<a>", {href: "#", text: "Last", click: plugin.method.alphabetize.bind(null, false)})));
         }
 
         plugin.init();
